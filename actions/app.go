@@ -47,6 +47,11 @@ func App() *buffalo.App {
 
 		app.GET("/", HomeHandler)
 
+		app.GET("/users", UsersIndex)
+		app.GET("/users/{user_id}", UserGet)
+		app.POST("/users", UsersCreate)
+		app.DELETE("/users/{user_id}", UsersDelete)
+
 	}
 
 	return app

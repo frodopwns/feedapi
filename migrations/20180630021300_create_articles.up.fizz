@@ -1,0 +1,7 @@
+create_table("articles") {
+	t.Column("id", "uuid", {"primary": true})
+	t.Column("feed_id", "uuid", {})
+	t.Column("name", "text", {})
+	t.Column("content", "text", {})
+	t.ForeignKey("feed_id", {"feeds": ["id"]}, {"on_delete": "cascade"})
+}

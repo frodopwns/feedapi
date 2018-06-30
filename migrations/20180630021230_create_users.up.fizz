@@ -1,0 +1,6 @@
+create_table("users") {
+	t.Column("id", "uuid", {"primary": true})
+	t.Column("name", "text", {})
+	t.Column("email", "text", {})
+}
+add_index("users", "email", {"unique": true})
