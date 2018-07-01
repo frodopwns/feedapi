@@ -1,0 +1,8 @@
+create_table("subscriptions") {
+	t.Column("id", "uuid", {"primary": true})
+	t.Column("feed_id", "uuid", {})
+	t.Column("user_id", "uuid", {})
+	t.ForeignKey("feed_id", {"feeds": ["id"]}, {"on_delete": "cascade"})
+	t.ForeignKey("user_id", {"users": ["id"]}, {"on_delete": "cascade"})
+}
+add_index("subscriptions", ["user_id","feed_id"], {"unique": true})

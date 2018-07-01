@@ -1,1 +1,1 @@
-drop_index("feeds", "feeds_name_idx")
+drop_index("articles", "articles_name_idx")

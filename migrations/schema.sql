@@ -75,6 +75,21 @@ CREATE TABLE public.schema_migration (
 ALTER TABLE public.schema_migration OWNER TO postgres;
 
 --
+-- Name: subscriptions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.subscriptions (
+    id uuid NOT NULL,
+    feed_id uuid NOT NULL,
+    user_id uuid NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.subscriptions OWNER TO postgres;
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -103,6 +118,14 @@ ALTER TABLE ONLY public.articles
 
 ALTER TABLE ONLY public.feeds
     ADD CONSTRAINT feeds_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: subscriptions subscriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscriptions
+    ADD CONSTRAINT subscriptions_pkey PRIMARY KEY (id);
 
 
 --
@@ -135,6 +158,13 @@ CREATE UNIQUE INDEX schema_migration_version_idx ON public.schema_migration USIN
 
 
 --
+-- Name: subscriptions_user_id_feed_id_idx; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX subscriptions_user_id_feed_id_idx ON public.subscriptions USING btree (user_id, feed_id);
+
+
+--
 -- Name: users_email_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -147,6 +177,22 @@ CREATE UNIQUE INDEX users_email_idx ON public.users USING btree (email);
 
 ALTER TABLE ONLY public.articles
     ADD CONSTRAINT articles_feed_id_fkey FOREIGN KEY (feed_id) REFERENCES public.feeds(id) ON DELETE CASCADE;
+
+
+--
+-- Name: subscriptions subscriptions_feed_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscriptions
+    ADD CONSTRAINT subscriptions_feed_id_fkey FOREIGN KEY (feed_id) REFERENCES public.feeds(id) ON DELETE CASCADE;
+
+
+--
+-- Name: subscriptions subscriptions_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscriptions
+    ADD CONSTRAINT subscriptions_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
