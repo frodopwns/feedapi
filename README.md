@@ -98,6 +98,12 @@ If you already have access to a running Postgres instance then you can skip this
 ### Deploy a POstgres instance
 
 ```
+docker run -p 5432:5432 --name some-postgres -e POSTGRES_PASSWORD=postgres -d postgres
+```
+
+or
+
+```
 helm install stable/postgresql
 ```
 
@@ -153,6 +159,13 @@ ok  	github.com/frodopwns/feedapi/models	0.021s
 
 To interact with the API yourself check out the examples in the actions/ test files and the python notebook in examples/. 
 
+Prep DB:
+
+```
+./bin/feedapi db create
+./bin/feedapi migrate up
+```
+
 To preseed the db with some Users, Articles, and Feeds, run:
 
 ```
@@ -162,7 +175,6 @@ To preseed the db with some Users, Articles, and Feeds, run:
 Then when you are ready to rock, run:
 
 ```
-./bin/feedapi migrate up
 ./bin/feedapi dev
 ```
 
