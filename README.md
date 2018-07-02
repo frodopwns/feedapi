@@ -89,6 +89,7 @@ This entity binds a User to a Feed.
 
 - Golang
 - GoBuffalo (`go get -u -v github.com/gobuffalo/buffalo/buffalo`)
+- Dep (https://github.com/golang/dep)
 
 ## Running
 
@@ -121,6 +122,7 @@ development:
 ### Build the binary
 
 ```
+dep ensure
 buffalo build
 ```
 
