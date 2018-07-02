@@ -160,6 +160,7 @@ To preseed the db with some Users, Articles, and Feeds, run:
 Then when you are ready to rock, run:
 
 ```
+./bin/feedapi migrate up
 ./bin/feedapi dev
 ```
 
