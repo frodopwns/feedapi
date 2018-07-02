@@ -105,6 +105,7 @@ or
 
 ```
 helm install stable/postgresql
+# then you will want to forward the 5443 port from localhost to the pod in-cluster
 ```
 
 Note: In order to persist data through restarts of Postgres you will need a PVC or a host volume mount comvined with pod affinity.
@@ -131,6 +132,8 @@ development:
 dep ensure
 buffalo build
 ```
+
+This will download the project dependencies and then create a cimpiled binary in ./bin/
 
 ### Test
 
