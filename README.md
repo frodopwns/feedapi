@@ -108,7 +108,7 @@ helm install stable/postgresql
 # then you will want to forward the 5443 port from localhost to the pod in-cluster
 ```
 
-Note: In order to persist data through restarts of Postgres you will need a PVC or a host volume mount comvined with pod affinity.
+Note: In order to persist data through restarts of Postgres you will need a PVC or a host volume mount.
 
 ### Update database.yaml
 
